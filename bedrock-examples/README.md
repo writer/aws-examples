@@ -90,7 +90,7 @@ AWS_SESSION_TOKEN=your AWS session token
 
 **Run the example:**
 1. Ensure your virtual environment is activated
-2. Run `transcript_analyzer.py` 
+2. Run `transcript_analyzer.py`
     ```bash
     cd src/bedrock-examples/
     python transcript_analyzer.py
@@ -118,7 +118,7 @@ AWS_SESSION_TOKEN=your AWS session token
 
 **Run the example:**
 1. Ensure your virtual environment is activated
-2. Run `main.py` 
+2. Run `main.py`
     ```bash
     cd src/bedrock-examples/web-search-agent
     python main.py
@@ -146,4 +146,3 @@ AWS_SESSION_TOKEN=your AWS session token
 For issues with:
 - **WRITER Integration**: Check [WRITER Support](https://support.writer.com/)
 - **AWS Bedrock**: Check [AWS Bedrock Documentation](https://docs.aws.amazon.com/bedrock/)
-

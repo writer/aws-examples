@@ -59,7 +59,7 @@ Before you begin, ensure you have the following:
     AWS_SECRET_ACCESS_KEY=your AWS secret key
     AWS_SESSION_TOKEN=your AWS session token
     ```
-    **Note:** You can find more information on how to  set up these credentials in the [Bedrock](/src/bedrock-examples/README.md) or [Strands](/src/strands-examples/README.md) examples README
+    **Note:** You can find more information on how to  set up these credentials in the [Bedrock](/bedrock-examples/README.md) or [Strands](/strands-examples/README.md) examples README
 
 ## Examples
 
@@ -67,18 +67,18 @@ Before you begin, ensure you have the following:
 
 Examples demonstrating how to use WRITER's Palmyra models with AWS Bedrock:
 
-- **[Transcript Analyzer](src/bedrock-examples/README.md#transcript-analyzer-transcript_analyzerpy)**: Analyze meeting transcripts and extract summaries and action items
-- **[Web Search Agent](src/bedrock-examples/README.md#web-search-agent-web-search-agent)**: Intelligent agent that can search the web and process information
+- **[Transcript Analyzer](bedrock-examples/README.md#transcript-analyzer-transcript_analyzerpy)**: Analyze meeting transcripts and extract summaries and action items
+- **[Web Search Agent](bedrock-examples/README.md#web-search-agent-web-search-agent)**: Intelligent agent that can search the web and process information
 
 ### WRITER Strands Examples
 
 Examples demonstrating how to use WRITER's models with AWS Strands via direct integration:
 
-- **[Financial Analysis](src/strands-examples/WRITER/financial_analysis.py)**: Analyze financial data and generate insights
-- **[Vision Image Analysis](src/strands-examples/WRITER/vision_image_analysis.py)**: Analyze images and extract information
-- **[Structured Output](src/strands-examples/WRITER/structured_output.py)**: Generate structured data from unstructured text
-- **[Long Context](src/strands-examples/WRITER/long_context.py)**: Handle long-form content and documents
-- **[Enterprise Workflow Automation](src/strands-examples/WRITER/enterpricse_workflow_automation.py)**: Automate enterprise workflows and processes
+- **[Financial Analysis](strands-examples/WRITER/financial_analysis.py)**: Analyze financial data and generate insights
+- **[Vision Image Analysis](strands-examples/WRITER/vision_image_analysis.py)**: Analyze images and extract information
+- **[Structured Output](strands-examples/WRITER/structured_output.py)**: Generate structured data from unstructured text
+- **[Long Context](strands-examples/WRITER/long_context.py)**: Handle long-form content and documents
+- **[Enterprise Workflow Automation](strands-examples/WRITER/enterpricse_workflow_automation.py)**: Automate enterprise workflows and processes
 
 ### Bedrock Strands Examples
 

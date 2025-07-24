@@ -95,7 +95,7 @@ Before you begin, make sure you have:
    ```bash
     # For WRITER direct integration
     WRITER_API_KEY=your_writer_api_key_here
-   
+
     # For AWS Bedrock integration (when available)
     AWS_REGION_NAME=your AWS region
     AWS_BEDROCK_MODEL_ID=Bedrock model ID you want to use
