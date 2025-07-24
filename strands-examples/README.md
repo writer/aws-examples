@@ -8,10 +8,6 @@ This directory contains examples demonstrating how to use AWS Strands with WRITE
 - [Directory structure](#directory-structure)
   - [Writer - direct WRITER integration](#writer---direct-writer-integration)
   - [Bedrock - AWS Bedrock integration](#bedrock---aws-bedrock-integration)
-- [Prerequisites](#prerequisites)
-  - [For WRITER direct integration](#for-writer-direct-integration-writer-folder)
-  - [For AWS Bedrock integration](#for-aws-bedrock-integration-bedrock-folder)
-- [Installation](#installation)
 - [Model information](#model-information)
   - [Available WRITER models](#available-writer-models)
   - [AWS Bedrock models (coming soon)](#aws-bedrock-models-coming-soon)
@@ -58,7 +54,7 @@ The `multi_agent_example/` directory contains specialized AI assistants:
 
 ### `bedrock/` - AWS Bedrock integration
 
-Examples that use WRITER models through AWS Bedrock with Strands (coming soon):
+Examples that use WRITER models through AWS Bedrock with Strands (coming soon).
 
 **Key features:**
 - Integration with AWS Bedrock infrastructure.
