@@ -74,11 +74,11 @@ Examples demonstrating how to use WRITER's Palmyra models with AWS Bedrock:
 
 Examples demonstrating how to use WRITER's models with AWS Strands via direct integration:
 
-- **[Financial Analysis](strands-examples/WRITER/financial_analysis.py)**: Analyze financial data and generate insights
-- **[Vision Image Analysis](strands-examples/WRITER/vision_image_analysis.py)**: Analyze images and extract information
-- **[Structured Output](strands-examples/WRITER/structured_output.py)**: Generate structured data from unstructured text
-- **[Long Context](strands-examples/WRITER/long_context.py)**: Handle long-form content and documents
-- **[Enterprise Workflow Automation](strands-examples/WRITER/enterpricse_workflow_automation.py)**: Automate enterprise workflows and processes
+- **[Financial Analysis](strands-examples/writer/financial_analysis.py)**: Analyze financial data and generate insights
+- **[Vision Image Analysis](strands-examples/writer/vision_image_analysis.py)**: Analyze images and extract information
+- **[Structured Output](strands-examples/writer/structured_output.py)**: Generate structured data from unstructured text
+- **[Long Context](strands-examples/writer/long_context.py)**: Handle long-form content and documents
+- **[Enterprise Workflow Automation](strands-examples/writer/enterprise_workflow_automation.py)**: Automate enterprise workflows and processes
 
 ### Bedrock Strands Examples
 
