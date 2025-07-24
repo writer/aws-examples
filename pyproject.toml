@@ -1,0 +1,26 @@
+[project]
+name = "palmyra-aws-samples"
+version = "0.0.1"
+description = ""
+authors = [
+    {name = "Your Name",email = "you@example.com"}
+]
+readme = "README.md"
+requires-python = "^3.12"
+dependencies = [
+    "python-dotenv (>=1.1.1,<2.0.0)",
+    "flake8 (>=7.3.0,<8.0.0)",
+    "black (>=25.1.0,<26.0.0)",
+    "isort (>=6.0.1,<7.0.0)",
+    "pre-commit (>=4.2.0,<5.0.0)",
+    "boto3 (>=1.39.10,<2.0.0)",
+    "strands-agents (>=1.0.1,<2.0.0)",
+    "strands-agents-tools (>=0.2.1,<0.3.0)",
+    "writer-sdk (>=2.2.1,<3.0.0)",
+    "ddgs (>=9.4.0,<10.0.0)"
+]
+
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
