@@ -33,15 +33,29 @@ Examples that use WRITER models directly through the WRITER with AWS Strands:
 
 | Example | Description | Model used |
 |---------|-------------|------------|
-| **[Financial analysis](writer/financial_analysis.py)** | Analyze financial data and generate insights | `palmyra-fin` |
-| **[Vision image analysis](writer/vision_image_analysis.py)** | Analyze images and extract information | `palmyra-x5` |
-| **[Structured output](writer/structured_output.py)** | Generate structured data from unstructured text | `palmyra-x5` |
-| **[Long context](writer/long_context.py)** | Handle long-form content and documents | `palmyra-x5` |
-| **[Enterprise workflow automation](writer/enterpricse_workflow_automation.py)** | Automate enterprise workflows and processes | `palmyra-x5` |
+| **[Financial analysis](writer/README.md#financial-analysis-financial_analysispy)** | Analyze financial data and generate insights | `palmyra-fin` |
+| **[Vision image analysis](writer/README.md#vision-image-analysis-vision_image_analysispy)** | Analyze images and extract information | `palmyra-x5` |
+| **[Structured output](writer/README.md#structured-output-structured_outputpy)** | Generate structured data from unstructured text | `palmyra-x5` |
+| **[Long context](writer/README.md#long-context-long_contextpy)** | Handle long-form content and documents | `palmyra-x5` |
+| **[Enterprise workflow automation](writer/README.md#enterprise-workflow-automation-enterprise_workflow_automationpy)** | Automate enterprise workflows and processes | `palmyra-x5` |
+| **[Memory agent](writer/README.md#memory-agent-memory_agentpy)** | Agent with memory capabilities for conversation context | `palmyra-x5` |
+| **[Multi-agent examples](writer/README.md#multi-agent-examples-multi_agent_example)** | Collection of specialized AI assistants | Various models |
+
+#### Multi-agent examples
+
+The `multi_agent_example/` directory contains specialized AI assistants:
+
+| Example | Description | Model used |
+|---------|-------------|------------|
+| **[Creative Assistant](writer/multi_agent_example/creative_assistant.py)** | AI assistant for creative tasks and content generation | `palmyra-creative` |
+| **[Financial Assistant](writer/multi_agent_example/fin_assistant.py)** | AI assistant for financial analysis and insights | `palmyra-fin` |
+| **[Medical Assistant](writer/multi_agent_example/med_assistant.py)** | AI assistant for medical information and analysis | `palmyra-med` |
+| **[Knowledge Agent](writer/multi_agent_example/knowledge_agent.py)** | AI agent for knowledge management and retrieval | `palmyra-x5` |
 
 **Key features:**
 - Direct integration access to full family of WRITER's Palmyra models
 - Real-time access to latest WRITER model capabilities
+- Specialized models for different domains (finance, medical, creative)
 
 ### `bedrock/` - AWS Bedrock integration
 
@@ -50,59 +64,6 @@ Examples that use WRITER models through AWS Bedrock with Strands (coming soon):
 **Key features:**
 - Integration with AWS Bedrock infrastructure
 - Access to WRITER's Palmyra X4 and X5 models via AWS Bedrock
-
-Before you begin, make sure you have:
-
-- Python 3.10 or higher installed
-- A [Writer AI Studio](https://app.writer.com/register) account
-- A Writer API key. See instructions in the [API Quickstart](/home/quickstart)
-- Basic familiarity with Python and [AWS Strands](https://strandsagents.com/latest/)
-
-### For WRITER direct integration (`writer/` folder)
-- **WRITER API key**: Get your API key from the [WRITER Console](https://console.writer.com/)
-
-### For AWS Bedrock integration (`bedrock/` folder)
-- **AWS account**: With access to Amazon Bedrock
-- **Bedrock model access**: Subscribe to WRITER models in AWS Bedrock console (see below)
-    #### Subscribe to Bedrock models
-    Palmyra X5 and X4 models are available in the **US West (Oregon)** AWS Region with cross-Region inference.
-
-    1. Go to the [AWS Bedrock Console](https://console.aws.amazon.com/bedrock/)
-    2. Navigate to "Model access"
-    3. Request access to the Writer models you want to use:
-    - `writer.palmyra-x5-v1:0`
-    - `writer.palmyra-x4-v1:0`
-
-    ### List available models
-    Verify your access to Palmyra models:
-    ```bash
-    aws bedrock list-foundation-models --region=us-west-2 --by-provider writer --query "modelSummaries[*].modelId"
-    ```
-
-## Installation
-
-1. **Install dependencies**
-   ```bash
-    pip install 'strands-agents[writer]'
-    pip install strands-agents-tools
-    ```
-2. **Set up environment variables**
-
-    If you haven't already, copy the `.env.template` file to a `.env` file in the **project root** with your credentials:
-     ```
-     cp .env.template .env
-    ```
-   ```bash
-    # For WRITER direct integration
-    WRITER_API_KEY=your_writer_api_key_here
-
-    # For AWS Bedrock integration (when available)
-    AWS_REGION_NAME=your AWS region
-    AWS_BEDROCK_MODEL_ID=Bedrock model ID you want to use
-    AWS_ACCESS_KEY_ID=your AWS access key
-    AWS_SECRET_ACCESS_KEY=your AWS secret key
-    AWS_SESSION_TOKEN=your AWS session token
-   ```
 
 ## Model information
 

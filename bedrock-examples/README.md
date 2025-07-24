@@ -4,14 +4,9 @@ This directory contains examples demonstrating how to use WRITER's Palmyra X4 an
 
 ## Table of Contents
 
-- [Overview](#overview)
+- [Directory structure](#directory-structure)
 - [Prerequisites](#prerequisites)
-  - [AWS Account & Bedrock Access](#1-aws-account--bedrock-access)
-  - [Python Environment](#2-python-environment)
-- [Installation & Setup](#installation--setup)
-  - [Subscribe to Bedrock Models](#subscribe-to-bedrock-models)
-  - [List Available Models](#list-available-models)
-  - [Environment Configuration](#environment-configuration)
+- [Installation](#installation)
 - [Examples](#examples)
   - [Transcript Analyzer](#transcript-analyzer-transcript_analyzerpy)
   - [Web Search Agent](#web-search-agent-web-search-agent)
@@ -21,11 +16,18 @@ This directory contains examples demonstrating how to use WRITER's Palmyra X4 an
 - [Resources](#resources)
 - [Support](#support)
 
-## Overview
+## Directory structure
 
-These examples showcase how to:
-- **Transcript Analysis**: analyze meeting transcripts and extract summaries and action items
-- **Web Search Agent**: intelligent agent that can search the web and process information
+### Examples that use WRITER models through AWS Bedrock:
+
+| Example | Description | Model used |
+|---------|-------------|------------|
+| **[Transcript Analyzer](transcript_analyzer.py)** | Analyze meeting transcripts and extract summaries and action items | `writer.palmyra-x5-v1:0` |
+| **[Web Search Agent](web-search-agent/)** | Intelligent agent that can search the web and process information | `writer.palmyra-x5-v1:0` |
+
+**Key features:**
+- Integration with AWS Bedrock infrastructure
+- Access to WRITER's Palmyra X5 model via AWS Bedrock
 
 ## Prerequisites
 
@@ -38,7 +40,7 @@ Before running these examples, ensure you have:
 - **Python 3.10+** installed
 - **boto3** SDK for Python: `pip install boto3`
 
-## Installation & Setup
+## Installation
 
 ### Subscribe to Bedrock Models
 Palmyra X5 and X4 models are available in the **US West (Oregon)** AWS Region with cross-Region inference.

@@ -1,4 +1,4 @@
-# Palmyra AWS Samples
+# AWS Examples
 
 This repository contains sample code demonstrating how to use AWS Bedrock and Strands with WRITER's Palmyra family of models
 
@@ -9,9 +9,10 @@ This repository contains sample code demonstrating how to use AWS Bedrock and St
 - [Installation](#installation)
 - [Examples](#examples)
   - [AWS Bedrock examples](#aws-bedrock-examples)
-  - [WRITER Strands examples](#WRITER-strands-examples)
+  - [WRITER Strands examples](#writer-strands-examples)
   - [Bedrock Strands examples (coming soon)](#bedrock-strands-examples)
-- [About WRITER](#about-WRITER)
+- [Resources](#resources)
+- [About WRITER](#about-writer)
 - [Support](#support)
 
 ## Overview
@@ -28,8 +29,8 @@ Before you begin, ensure you have the following:
 
 1. Clone the Repository
     ```bash
-    git clone <repository-url>
-    cd palmyra-aws-samples
+    git clone https://github.com/writer/aws-examples.git
+    cd aws-examples
     ```
 2. Create and activate a virtual environment:
    ```
@@ -74,17 +75,35 @@ Examples demonstrating how to use WRITER's Palmyra models with AWS Bedrock:
 
 Examples demonstrating how to use WRITER's models with AWS Strands via direct integration:
 
-- **[Financial Analysis](strands-examples/writer/financial_analysis.py)**: Analyze financial data and generate insights
-- **[Vision Image Analysis](strands-examples/writer/vision_image_analysis.py)**: Analyze images and extract information
-- **[Structured Output](strands-examples/writer/structured_output.py)**: Generate structured data from unstructured text
-- **[Long Context](strands-examples/writer/long_context.py)**: Handle long-form content and documents
-- **[Enterprise Workflow Automation](strands-examples/writer/enterprise_workflow_automation.py)**: Automate enterprise workflows and processes
+- **[Financial Analysis](strands-examples/writer/README.md#financial-analysis-financial_analysispy)**: Analyze financial data and generate insights
+- **[Vision Image Analysis](strands-examples/writer/README.md#vision-image-analysis-vision_image_analysispy)**: Analyze images and extract information
+- **[Structured Output](strands-examples/writer/README.md#structured-output-structured_outputpy)**: Generate structured data from unstructured text
+- **[Long Context](strands-examples/writer/README.md#long-context-long_contextpy)**: Handle long-form content and documents
+- **[Enterprise Workflow Automation](strands-examples/writer/README.md#enterprise-workflow-automation-enterprise_workflow_automationpy)**: Automate enterprise workflows and processes
+- **[Memory Agent](strands-examples/writer/README.md#memory-agent-memory_agentpy)**: Agent with memory capabilities for conversation context
+- **[Multi-Agent Examples](strands-examples/writer/README.md#multi-agent-examples-multi_agent_example)**: 
+  - [Creative Assistant](strands-examples/writer/multi_agent_example/creative_assistant.py): AI 
+  assistant for creative tasks
+  - [Financial Assistant](strands-examples/writer/multi_agent_example/fin_assistant.py): AI 
+  assistant for financial analysis
+  - [Medical Assistant](strands-examples/writer/multi_agent_example/med_assistant.py): AI 
+  assistant for medical information
+  - [Knowledge Agent](strands-examples/writer/multi_agent_example/knowledge_agent.py): AI agent 
+  for knowledge management
 
 ### Bedrock Strands Examples
 
 Examples demonstrating how to use WRITER's models with AWS Strands via Bedrock integration:
 
 - **Coming Soon**: Examples will be added as they become available
+
+## Resources
+
+The `resources/` directory contains sample data and files used by the examples:
+
+- **[Meeting Transcript](resources/meeting_transcript.md)**: Sample meeting transcript for testing the transcript analyzer
+- **[The Ninth Wave](resources/the_ninth_wave.jpg)**: Sample image for testing vision analysis capabilities
+- **[The History of Baseball](resources/TheHistoryofBaseball.zip)**: Sample document for testing long context capabilities
 
 ## About WRITER
 
