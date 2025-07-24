@@ -6,10 +6,7 @@ This directory contains examples demonstrating how to use WRITER's Palmyra famil
 
 - [Overview](#overview)
 - [Prerequisites](#prerequisites)
-  - [WRITER Account & API Access](#1-writer-account--api-access)
-  - [Python Environment](#2-python-environment)
 - [Installation & Setup](#installation--setup)
-  - [Environment Configuration](#environment-configuration)
 - [Examples](#examples)
   - [Financial Analysis](#financial-analysis-financial_analysispy)
   - [Vision Image Analysis](#vision-image-analysis-vision_image_analysispy)
@@ -17,33 +14,32 @@ This directory contains examples demonstrating how to use WRITER's Palmyra famil
   - [Long Context](#long-context-long_contextpy)
   - [Enterprise Workflow Automation](#enterprise-workflow-automation-enterprise_workflow_automationpy)
   - [Memory Agent](#memory-agent-memory_agentpy)
-  - [Multi-Agent Examples](#multi-agent-examples-multi_agent_example)
+  - [Multi-Agent](#multi-agent-multi_agent_example)
 - [Model Information](#model-information)
-  - [Available WRITER Models](#available-writer-models)
 - [Resources](#resources)
 - [Support](#support)
 
 ## Overview
 
 These examples showcase how to:
-- **Financial Analysis**: Analyze financial data and generate insights using specialized finance models
-- **Vision Image Analysis**: Process and analyze images with vision capabilities
-- **Structured Output**: Generate structured data from unstructured text
-- **Long Context**: Handle long-form content and documents
-- **Enterprise Workflow Automation**: Automate enterprise workflows and processes
-- **Memory Agent**: Create agents with conversation memory capabilities
-- **Multi-Agent Collaboration**: Build specialized AI assistants for different domains
+- **Financial Analysis**: Analyze financial data and generate insights using specialized finance models.
+- **Vision Image Analysis**: Process and analyze images with vision capabilities.
+- **Structured Output**: Generate structured data from unstructured text.
+- **Long Context**: Handle long-form content and documents.
+- **Enterprise Workflow Automation**: Automate enterprise workflows and processes.
+- **Memory Agent**: Create agents with conversation memory capabilities.
+- **Multi-Agent Collaboration**: Build specialized AI assistants for different domains.
 
 ## Prerequisites
 
 Before you begin, make sure you have:
 
-- Python 3.10 or higher installed
-- A [Writer AI Studio](https://app.writer.com/register) account
-- A Writer API key. See instructions in the [API Quickstart](/home/quickstart)
-- Basic familiarity with Python and [AWS Strands](https://strandsagents.com/latest/)
+- Python 3.10 or higher installed.
+- A [Writer AI Studio](https://app.writer.com/register) account.
+- A Writer API key. See instructions in the [API Quickstart](/home/quickstart).
+- Basic familiarity with Python and [AWS Strands](https://strandsagents.com/latest/).
 
-## Installation
+## Installation & setup
 
 To use Writer models with Strands Agents, install the optional Writer dependency:
 
@@ -52,6 +48,18 @@ pip install 'strands-agents[writer]'
 ```
 
 **Note:** To follow along with the examples in this guide, you'll also need the [Strands Agent Tools package](https://github.com/strands-agents/tools). Install the package with `pip install strands-agents-tools`.
+
+### Environment Configuration
+If you haven't already, copy the `.env.template` file to a `.env` file in the project root with your AWS credentials:
+```
+cp .env.template .env
+```
+**Note:** You only need to fill in the below credentials for these examples.
+
+```
+#WRITER credentials
+WRITER_API_KEY=your Writer API key
+```
 
 ## Examples
 
@@ -187,7 +195,7 @@ cd strands-examples/writer/
 python memory_agent.py
 ```
 
-### Multi-Agent Examples (`multi_agent_example/`)
+### Multi-Agent (`multi_agent_example/`)
 
 | Feature            | Description                                |
 | ------------------ | ------------------------------------------ |

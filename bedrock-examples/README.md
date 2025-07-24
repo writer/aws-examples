@@ -6,7 +6,7 @@ This directory contains examples demonstrating how to use WRITER's Palmyra X4 an
 
 - [Directory structure](#directory-structure)
 - [Prerequisites](#prerequisites)
-- [Installation](#installation)
+  - [Installation & Setup](#installation--setup)
 - [Examples](#examples)
   - [Transcript Analyzer](#transcript-analyzer-transcript_analyzerpy)
   - [Web Search Agent](#web-search-agent-web-search-agent)
@@ -22,25 +22,25 @@ This directory contains examples demonstrating how to use WRITER's Palmyra X4 an
 
 | Example | Description | Model used |
 |---------|-------------|------------|
-| **[Transcript Analyzer](transcript_analyzer.py)** | Analyze meeting transcripts and extract summaries and action items | `writer.palmyra-x5-v1:0` |
-| **[Web Search Agent](web-search-agent/)** | Intelligent agent that can search the web and process information | `writer.palmyra-x5-v1:0` |
+| **[Transcript Analyzer](transcript_analyzer.py)** | Analyze meeting transcripts and extract summaries and action items. | `writer.palmyra-x5-v1:0` |
+| **[Web Search Agent](web-search-agent/)** | Intelligent agent that can search the web and process information. | `writer.palmyra-x5-v1:0` |
 
 **Key features:**
-- Integration with AWS Bedrock infrastructure
-- Access to WRITER's Palmyra X5 model via AWS Bedrock
+- Integration with AWS Bedrock infrastructure.
+- Access to WRITER's Palmyra X5 and X4 model via AWS Bedrock.
 
 ## Prerequisites
 
 Before running these examples, ensure you have:
 
 ### 1. AWS Account & Bedrock Access
-- **AWS Account** with access to Amazon Bedrock
+- **AWS Account** with access to Amazon Bedrock.
 
 ### 2. Python Environment
-- **Python 3.10+** installed
-- **boto3** SDK for Python: `pip install boto3`
+- **Python 3.10+** installed.
+- **boto3** SDK for Python: `pip install boto3`.
 
-## Installation
+## Installation & setup
 
 ### Subscribe to Bedrock Models
 Palmyra X5 and X4 models are available in the **US West (Oregon)** AWS Region with cross-Region inference.
@@ -62,7 +62,7 @@ If you haven't already, copy the `.env.template` file to a `.env` file in the pr
 ```
 cp .env.template .env
 ```
-**Note:** you only need to fill in the below credentials for these examples
+**Note:** You only need to fill in the below credentials for these examples.
 
 ```
 # AWS Credentials
@@ -86,9 +86,9 @@ AWS_SESSION_TOKEN=your AWS session token
 | **Key Focus**      | Document Processing & Summarization        |
 
 **What it does:**
-- Loads a meeting transcript from `../resources/meeting_transcript.md`
-- Sends it to WRITER LLM via AWS Bedrock for analysis
-- Returns a structured summary with action items
+- Loads a meeting transcript from `../resources/meeting_transcript.md`.
+- Sends it to WRITER LLM via AWS Bedrock for analysis.
+- Returns a structured summary with action items.
 
 **Run the example:**
 1. Ensure your virtual environment is activated
@@ -109,14 +109,14 @@ AWS_SESSION_TOKEN=your AWS session token
 | **Key Focus**      | Web Research & Contextual Responses        |
 
 **What it does:**
-- Performs web searches using function calling
-- Processes search results through the WRITER LLM via AWS Bedrock
-- Provides structured answers with citations and sources
+- Performs web searches using function calling.
+- Processes search results through the WRITER LLM via AWS Bedrock.
+- Provides structured answers with citations and sources.
 
 **File Structure:**
-- **`main.py`**: Entry point that sets up the agent and initiates the conversation
-- **`agent.py`**: Core agent class that manages conversation flow, tool calling, and retry logic
-- **`tools.py`**: Defines the web search tool and AWS Bedrock tool configuration
+- **`main.py`**: Entry point that sets up the agent and initiates the conversation.
+- **`agent.py`**: Core agent class that manages conversation flow, tool calling, and retry logic.
+- **`tools.py`**: Defines the web search tool and AWS Bedrock tool configuration.
 
 **Run the example:**
 1. Ensure your virtual environment is activated
