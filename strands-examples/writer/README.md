@@ -35,13 +35,13 @@ These examples showcase how to:
 Before you begin, make sure you have:
 
 - Python 3.10 or higher installed.
-- A [Writer AI Studio](https://app.writer.com/register) account.
-- A Writer API key. See instructions in the [API Quickstart](/home/quickstart).
+- A [WRITER AI Studio](https://app.writer.com/register) account.
+- A WRITER API key. See instructions in the [API Quickstart](/home/quickstart).
 - Basic familiarity with Python and [AWS Strands](https://strandsagents.com/latest/).
 
 ## Installation & setup
 
-To use Writer models with Strands Agents, install the optional Writer dependency:
+To use WRITER models with Strands Agents, install the optional WRITER dependency:
 
 ```bash
 pip install 'strands-agents[writer]'
@@ -50,7 +50,7 @@ pip install 'strands-agents[writer]'
 **Note:** To follow along with the examples in this guide, you'll also need the [Strands Agent Tools package](https://github.com/strands-agents/tools). Install the package with `pip install strands-agents-tools`.
 
 ### Environment Configuration
-If you haven't already, copy the `.env.template` file to a `.env` file in the project root with your AWS credentials:
+If you haven't already, copy the `.env.template` file to a `.env` file in the project root with your WRITER credentials:
 ```
 cp .env.template .env
 ```
@@ -58,7 +58,7 @@ cp .env.template .env
 
 ```
 #WRITER credentials
-WRITER_API_KEY=your Writer API key
+WRITER_API_KEY=your WRITER API key
 ```
 
 ## Examples
@@ -236,9 +236,6 @@ python memory_agent.py
 **Run the examples:**
 ```bash
 cd strands-examples/writer/multi_agent_example/
-python creative_assistant.py
-python fin_assistant.py
-python med_assistant.py
 python knowledge_agent.py
 ```
 
