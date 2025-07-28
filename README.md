@@ -81,7 +81,7 @@ Examples demonstrating how to use WRITER's models with AWS Strands via direct in
 - **[Long Context](strands-examples/writer/README.md#long-context-long_contextpy)**: Handle long-form content and documents.
 - **[Enterprise Workflow Automation](strands-examples/writer/README.md#enterprise-workflow-automation-enterprise_workflow_automationpy)**: Automate enterprise workflows and processes.
 - **[Memory Agent](strands-examples/writer/README.md#memory-agent-memory_agentpy)**: Agent with memory capabilities for conversation context.
-- **[Multi-Agent Examples](strands-examples/writer/README.md#multi-agent-examples-multi_agent_example)**: 
+- **[Multi-Agent Examples](strands-examples/writer/README.md#multi-agent-examples-multi_agent_example)**:
   - [Creative Assistant](strands-examples/writer/multi_agent_example/creative_assistant.py): AI assistant for creative tasks.
   - [Financial Assistant](strands-examples/writer/multi_agent_example/fin_assistant.py): AI assistant for financial analysis.
   - [Medical Assistant](strands-examples/writer/multi_agent_example/med_assistant.py): AI assistant for medical information.
