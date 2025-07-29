@@ -30,47 +30,56 @@ def get_schema():
 
         return table_schema_list
     except Exception as e:
-        print(f"Error: {str(e)}")
+        error_message = f"Error in 'get_schema' handler occurred: {str(e)}"
+        print(error_message)
+        return error_message
 
 
 def execute_athena_query(query):
-    print("'/querydatabase' has called.")
-    athena_client = boto3.client("athena")
+    try:
+        print("'/querydatabase' has called.")
+        athena_client = boto3.client("athena")
 
-    response = athena_client.start_query_execution(
-        QueryString=query,
-        QueryExecutionContext={"Database": "thehistoryofbaseball"},
-        ResultConfiguration={"OutputLocation": outputLocation},
-    )
+        response = athena_client.start_query_execution(
+            QueryString=query,
+            QueryExecutionContext={"Database": "thehistoryofbaseball"},
+            ResultConfiguration={"OutputLocation": outputLocation},
+        )
 
-    query_execution_id = response.get("QueryExecutionId")
-    print(f"Query Execution ID: {query_execution_id}")
+        query_execution_id = response.get("QueryExecutionId")
+        print(f"Query Execution ID: {query_execution_id}")
 
-    response_wait = athena_client.get_query_execution(
-        QueryExecutionId=query_execution_id
-    )
-
-    while response_wait.get("QueryExecution", {}).get("Status", {}).get(
-        "State", ""
-    ) in ["QUEUED", "RUNNING"]:
-        print("Query is still running.")
         response_wait = athena_client.get_query_execution(
             QueryExecutionId=query_execution_id
         )
 
-    if (
-        response_wait.get("QueryExecution", {}).get("Status", {}).get("State", "")
-        == "SUCCEEDED"
-    ):
-        print("Query succeeded!")
-        query_results = athena_client.get_query_results(
-            QueryExecutionId=query_execution_id
-        )
-        return extract_result_data(query_results)
+        while response_wait.get("QueryExecution", {}).get("Status", {}).get(
+            "State", ""
+        ) in ["QUEUED", "RUNNING"]:
+            print("Query is still running.")
+            response_wait = athena_client.get_query_execution(
+                QueryExecutionId=query_execution_id
+            )
 
-    else:
-        print("Query failed!")
-        return None
+        if (
+            response_wait.get("QueryExecution", {}).get("Status", {}).get("State", "")
+            == "SUCCEEDED"
+        ):
+            print("Query succeeded!")
+            query_results = athena_client.get_query_results(
+                QueryExecutionId=query_execution_id
+            )
+            extracted_output = extract_result_data(query_results)
+            print(extracted_output)
+            return extracted_output
+
+        else:
+            print(f"Query {query_execution_id} haven't reached 'SUCCEEDED' status.")
+            return None
+    except Exception as e:
+        error_message = f"Error in 'execute_athena_query' handler occurred: {str(e)}\nExecution query: {query}"
+        print(error_message)
+        return error_message
 
 
 def extract_result_data(query_results):
@@ -95,7 +104,6 @@ def lambda_handler(event, context):
     print("Lambda handler has called.")
     print("-" * 20 + "Input event" + "-" * 20)
     print(event)
-    print("-" * 51)
     if event.get("apiPath", "") == "/getschema":
         result = get_schema()
 
@@ -115,26 +123,19 @@ def lambda_handler(event, context):
 
     if not result:
         print("Call failed.")
-        result = "Call failed. Empty result."
-
-    response_body = {"application/json": {"body": str(result)}}
-
-    action_response = {
-        "actionGroup": event.get("actionGroup"),
-        "apiPath": event.get("apiPath"),
-        "httpMethod": event.get("httpMethod"),
-        "httpStatusCode": 200,
-        "responseBody": response_body,
-    }
-
-    session_attributes = event.get("sessionAttributes", {})
-    prompt_session_attributes = event.get("promptSessionAttributes", {})
+        result = f"Call failed. Received outcome: {result or 'empty result'}"
 
     api_response = {
         "messageVersion": "1.0",
-        "response": action_response,
-        "sessionAttributes": session_attributes,
-        "promptSessionAttributes": prompt_session_attributes,
+        "response": {
+            "actionGroup": event.get("actionGroup"),
+            "apiPath": event.get("apiPath"),
+            "httpMethod": event.get("httpMethod"),
+            "httpStatusCode": 200,
+            "responseBody": {"application/json": {"body": str(result)}},
+        },
+        "sessionAttributes": event.get("sessionAttributes", {}),
+        "promptSessionAttributes": event.get("promptSessionAttributes", {}),
     }
 
     return api_response

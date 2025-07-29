@@ -185,8 +185,6 @@ delete_glue_crawler(GLUE_CRAWLER_NAME)
 delete_glue_tables(GLUE_DATABASE_NAME)
 delete_glue_database(GLUE_DATABASE_NAME)
 
-clean_s3_bucket(BUCKET_NAME)
-
 delete_agent_action_group(
     lambda_client,
     bedrock_agent_client,
@@ -200,11 +198,12 @@ delete_agent_action_group(
 delete_agent_alias(bedrock_agent_client, agent_id, agent_alias_id)
 delete_agent(bedrock_agent_client, agent_id)
 
+clean_s3_bucket(BUCKET_NAME)
+
 delete_lambda(lambda_client, LAMBDA_NAME)
 
 detach_role_policies(iam_client, LAMBDA_POLICY_ARNS, LAMBDA_ROLE_NAME)
 detach_role_policies(iam_client, GLUE_POLICY_ARNS, GLUE_ROLE_NAME)
-detach_role_policies(iam_client, BEDROCK_POLICY_ARNS, AGENT_ALIAS_NAME)
 detach_role_policies(iam_client, BEDROCK_POLICY_ARNS, AGENT_ROLE_NAME)
 
 delete_policy_by_name(BEDROCK_AGENT_BEDROCK_ALLOW_POLICY_NAME)

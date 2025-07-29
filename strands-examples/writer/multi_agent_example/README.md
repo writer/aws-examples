@@ -51,7 +51,7 @@ WRITER_API_KEY=your WRITER API key
     cd strands-examples/writer/multi_agent_example/
     python knowledge_agent.py
     ```
-    
+
 The Knowledge Agent will route your queries to the appropriate specialized tool functions (Creative, Financial, or Medical) based on the content of your question.
 
 ## Architecture diagram
@@ -59,18 +59,18 @@ The Knowledge Agent will route your queries to the appropriate specialized tool 
 ```mermaid
 flowchart TD
     KnowledgeAgent["Knowledge Agent<br/>(Orchestrator)<br/><br/>Central coordinator that<br/>routes queries to specialists<br/>using **palmyra-x5**"]
-    
+
     QueryRouting["Query Classification & <br/> Routing"]:::hidden
-    
+
     KnowledgeAgent --> QueryRouting
     QueryRouting --> CreativeAssistant["Creative Assistant<br/><br/>Handles creative tasks,<br/>brainstorming, and content<br/>generation using **palmyra-creative**"]
     QueryRouting --> FinancialAssistant["Financial Assistant<br/><br/>Processes financial analysis<br/>and insights using **palmyra-fin**"]
     QueryRouting --> MedicalAssistant["Medical Assistant<br/><br/>Handles medical information<br/>and analysis using **palmyra-med**"]
-    
+
     CreativeAssistant --> CreativeTools["Creative Tools<br/><br/>• Editor & File Tools<br/>• HTTP Request Tool<br/>• Python REPL"]
     FinancialAssistant --> FinancialTools["Financial Tools<br/><br/>• Calculator Tool<br/>• HTTP Request Tool<br/>• Python REPL"]
     MedicalAssistant --> MedicalTools["Medical Tools<br/><br/>• Web Search Tool<br/>• HTTP Request Tool<br/>• File Operations"]
-    
+
     classDef hidden stroke-width:0px,fill:none
 ```
 
@@ -78,7 +78,7 @@ flowchart TD
 
 ### 1. Knowledge agent (orchestrator)
 
-The `knowledge_agent` acts as the central coordinator that analyzes incoming natural language queries, determines the most appropriate specialized agent, and routes queries to that agent. All of this is accomplished through instructions outlined in the [KNOWLEDGE_AGENT_PROMPT](https://github.com/writer/aws-examples/blob/7536124dfe8585fed93aac1b73d868484b8d6596/strands-examples/writer/multi_agent_example/knowledge_agent.py#L40-L45) for the agent. Furthermore, each specialized agent is part of the tools array for the orchestrator agent. 
+The `knowledge_agent` acts as the central coordinator that analyzes incoming natural language queries, determines the most appropriate specialized agent, and routes queries to that agent. All of this is accomplished through instructions outlined in the [KNOWLEDGE_AGENT_PROMPT](https://github.com/writer/aws-examples/blob/7536124dfe8585fed93aac1b73d868484b8d6596/strands-examples/writer/multi_agent_example/knowledge_agent.py#L40-L45) for the agent. Furthermore, each specialized agent is part of the tools array for the orchestrator agent.
 
 **Implementation:**
 
@@ -95,9 +95,9 @@ knowledge_agent = Agent(
 
 ### 2. Specialized agents
 
-Each specialized assistant is implemented as a Strands tool function using the `@tool` decorator with domain-specific capabilities. This architecture allows us to create specialized functions that focus on particular domains, leverage domain-specific models, and process queries within their expertise. 
+Each specialized assistant is implemented as a Strands tool function using the `@tool` decorator with domain-specific capabilities. This architecture allows us to create specialized functions that focus on particular domains, leverage domain-specific models, and process queries within their expertise.
 
-**For example:** 
+**For example:**
 
 The Financial Assistant handles processing financial analysis, insights, and concepts using the calculator tool.
 
@@ -225,7 +225,7 @@ When a group of scientists at the Cern SuperCollider create a stable wormhole, t
 
 Time Travel Mechanism: Maya uses a cutting-edge technology known as "Chrono-Synclasticity" to communicate with her parallel self and prevent a catastrophic convergence of the two universes.
 
-These ideas are just the starting point for your journey through the vast expanse of science fiction. Remember, the true power of time travel lies not in the destination but in the journey itself. So, buckle up, space-time traveler, and get ready to explore the infinite possibilities of the timestream!Here are some mind-bending science fiction novel about time travel ideas to get you started. I have provided 10 different concepts, each with a unique time travel mechanism and plot. 
+These ideas are just the starting point for your journey through the vast expanse of science fiction. Remember, the true power of time travel lies not in the destination but in the journey itself. So, buckle up, space-time traveler, and get ready to explore the infinite possibilities of the timestream!Here are some mind-bending science fiction novel about time travel ideas to get you started. I have provided 10 different concepts, each with a unique time travel mechanism and plot.
 
 Would you like me to expand on any of these ideas or provide more concepts?
 ```
@@ -244,7 +244,7 @@ Traditional IRAs and Roth IRAs have distinct differences in terms of their tax i
 3. Required Minimum Distributions (RMDs): Traditional IRAs require RMDs starting at age 72, while Roth IRAs do not have RMDs during the account owner's lifetime.
 4. Withdrawal rules: Traditional IRA withdrawals before age 59 1/2 may be subject to a 10% penalty, while Roth IRA contributions can be withdrawn tax-free and penalty-free at any time.
 
-The choice between a Traditional IRA and a Roth IRA depends on individual financial situations, tax brackets, and retirement goals. 
+The choice between a Traditional IRA and a Roth IRA depends on individual financial situations, tax brackets, and retirement goals.
 
 Would you like more information on retirement planning or specific guidance on choosing between Traditional and Roth IRAs?
 ```
