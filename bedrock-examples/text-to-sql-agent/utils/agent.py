@@ -1,3 +1,6 @@
+import json
+
+
 def get_agent_id_by_name(bedrock_client, name):
     try:
         list_agent = bedrock_client.list_agents().get("agentSummaries", [])
@@ -65,3 +68,52 @@ def get_agent_alias_id_by_name(bedrock_client, agent_id, name):
         return agent_alias_id_list[0]
     except Exception as e:
         print("Error fetching agent alias id by name:", e)
+
+
+def format_agent_response(event):
+    if "chunk" in event:
+        data = event.get("chunk", {}).get("bytes", b"No bytes in chunk!")
+        return data.decode("utf8")
+
+    elif "trace" in event:
+        if (
+            event.get("trace", {})
+            .get("trace", {})
+            .get("orchestrationTrace", {})
+            .get("modelInvocationInput", {})
+        ):
+            return "Calling LLM..."
+        elif (
+            response_content := event.get("trace", {})
+            .get("trace", {})
+            .get("orchestrationTrace", {})
+            .get("modelInvocationOutput", {})
+            .get("rawResponse", {})
+            .get("content", "")
+        ):
+            response_content = json.loads(response_content)
+            if (
+                response_content := response_content.get("output", {})
+                .get("message", {})
+                .get("content", [])
+            ):
+                if tool_call := response_content[0].get("toolUse", {}):
+                    return f"Trying to call {tool_call.get('name', '')}..."
+                else:
+                    return None
+            else:
+                return None
+        elif (
+            event.get("trace", {})
+            .get("trace", {})
+            .get("orchestrationTrace", {})
+            .get("observation", {})
+            .get("type", "")
+            == "FINISH"
+        ):
+            return "Final response were generated!\n\n"
+        else:
+            return None
+
+    else:
+        return f"Unexpected event: {event}"

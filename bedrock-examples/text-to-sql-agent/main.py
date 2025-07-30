@@ -1,24 +1,26 @@
-import json
+import uuid
 
-from utils.agent import get_agent_alias_id_by_name, get_agent_id_by_name
+from utils.agent import (
+    format_agent_response,
+    get_agent_alias_id_by_name,
+    get_agent_id_by_name,
+)
 from utils.config.aws_clients import bedrock_agent_client, bedrock_agent_runtime_client
 from utils.config.constants import AGENT_ALIAS_NAME, AGENT_NAME
 
 
 def invoke_text_to_sql(query, agent_id, agent_alias_id):
     agent_response = bedrock_agent_runtime_client.invoke_agent(
-        inputText=query, agentId=agent_id, agentAliasId=agent_alias_id, sessionId="19"
+        inputText=query,
+        agentId=agent_id,
+        agentAliasId=agent_alias_id,
+        sessionId=str(uuid.uuid4()),
+        enableTrace=True,
     )
 
     for event in agent_response.get("completion"):
-        if "chunk" in event:
-            data = event["chunk"].get("bytes", b"No bytes in chunk!")
-            print(data.decode("utf8"))
-
-        elif "trace" in event:
-            print(json.dumps(event["trace"], indent=2))
-        else:
-            print(f"Unexpected event: {event}")
+        if formatted_response := format_agent_response(event):
+            print(formatted_response)
 
 
 if __name__ == "__main__":
