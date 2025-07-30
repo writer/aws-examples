@@ -6,11 +6,12 @@ This directory contains examples demonstrating how to use WRITER's Palmyra X4 an
 
 - [Directory structure](#directory-structure)
 - [Prerequisites](#prerequisites)
-  - [Installation & Setup](#installation--setup)
+  - [Installation & setup](#installation--setup)
 - [Examples](#examples)
-  - [Transcript Analyzer](#transcript-analyzer-transcript_analyzerpy)
-  - [Web Search Agent](#web-search-agent-web-search-agent)
-- [Model Information](#model-information)
+  - [Transcript analyzer](#transcript-analyzer-transcript_analyzerpy)
+  - [Web search agent](#web-search-agent-web-search-agent)
+  - [Text-to-SQL agent](#text-to-sql-agent-text-to-sql-agent)
+- [Model information](#model-information)
   - [Palmyra X5](#palmyra-x5-writerpalmyra-x5-v10)
   - [Palmyra X4](#palmyra-x4-writerpalmyra-x4-v10)
 - [Resources](#resources)
@@ -20,10 +21,11 @@ This directory contains examples demonstrating how to use WRITER's Palmyra X4 an
 
 ### Examples that use WRITER models through AWS Bedrock:
 
-| Example | Description | Model used |
-|---------|-------------|------------|
-| **[Transcript Analyzer](transcript_analyzer.py)** | Analyze meeting transcripts and extract summaries and action items. | `writer.palmyra-x5-v1:0` |
-| **[Web Search Agent](web-search-agent/)** | Intelligent agent that can search the web and process information. | `writer.palmyra-x5-v1:0` |
+| Example | Description|
+|---------|-------------|
+| **[Transcript Analyzer](transcript_analyzer.py)** | Analyze meeting transcripts and extract summaries and action items. |
+| **[Web Search Agent](web-search-agent/)** | Intelligent agent that can search the web and process information. |
+| **[Text-to-SQL agent](text-to-sql-agent/)** | Converts natural language queries to SQL and executes them against a baseball database. |
 
 **Key features:**
 - Integration with AWS Bedrock infrastructure.
@@ -33,31 +35,31 @@ This directory contains examples demonstrating how to use WRITER's Palmyra X4 an
 
 Before running these examples, ensure you have:
 
-### 1. AWS Account & Bedrock Access
+### 1. AWS account & Bedrock access
 - **AWS Account** with access to Amazon Bedrock.
 
-### 2. Python Environment
+### 2. Python environment
 - **Python 3.10+** installed.
 - **boto3** SDK for Python: `pip install boto3`.
 
 ## Installation & setup
 
-### Subscribe to Bedrock Models
+### Subscribe to Bedrock models
 Palmyra X5 and X4 models are available in the **US West (Oregon)** AWS Region with cross-Region inference.
 
 1. Go to the [AWS Bedrock Console](https://console.aws.amazon.com/bedrock/)
 2. Navigate to "Model access"
-3. Request access to the Writer models you want to use:
+3. Request access to the WRITER models you want to use:
    - `writer.palmyra-x5-v1:0`
    - `writer.palmyra-x4-v1:0`
 
-### List Available Models
+### List available models
 Verify your access to Palmyra models:
 ```bash
 aws bedrock list-foundation-models --region=us-west-2 --by-provider writer --query "modelSummaries[*].modelId"
 ```
 
-### Environment Configuration
+### Environment configuration
 If you haven't already, copy the `.env.template` file to a `.env` file in the project root with your AWS credentials:
 ```
 cp .env.template .env
@@ -75,7 +77,7 @@ AWS_SESSION_TOKEN=your AWS session token
 
 ## Examples
 
-### Transcript Analyzer (`transcript_analyzer.py`)
+### Transcript analyzer (`transcript_analyzer.py`)
 
 | Feature            | Description                                |
 | ------------------ | ------------------------------------------ |
@@ -98,11 +100,11 @@ AWS_SESSION_TOKEN=your AWS session token
     python transcript_analyzer.py
     ```
 
-### Web Search Agent (`web-search-agent/`)
+### Web search agent (`web-search-agent/`)
 
 | Feature            | Description                                |
 | ------------------ | ------------------------------------------ |
-| **Tools Used**     | web_search                                 |
+| **Tools Used**     | Web search                                 |
 | **Complexity**     | Beginner                                   |
 | **Agent Type**     | Single Agent with Function Calling         |
 | **Interaction**    | Command Line Interface                     |
@@ -126,7 +128,43 @@ AWS_SESSION_TOKEN=your AWS session token
     python main.py
     ```
 
-## Model Information
+### Text-to-SQL agent ([`text-to-sql-agent/`](text-to-sql-agent/README.md))
+
+| Feature            | Description                                |
+| ------------------ | ------------------------------------------ |
+| **Tools Used**     | Database schema, SQL execution             |
+| **Complexity**     | Intermediate                               |
+| **Agent Type**     | Single Agent with Action Groups            |
+| **Interaction**    | Command Line Interface                     |
+| **Key Focus**      | Natural Language to SQL Conversion         |
+
+**What it does:**
+- Converts natural language queries into SQL using AWS Bedrock agents.
+- Executes SQL queries against a baseball database using Amazon Athena.
+- Provides formatted results with both SQL queries and execution results.
+- Supports trace mode to show the agent's reasoning process.
+
+**File Structure:**
+- **`main.py`**: Main application entry point with interactive interface.
+- **`utils/agent.py`**: Agent utility functions and response formatting.
+- **`utils/initialize_environment.py`**: AWS resource setup and agent creation.
+- **`utils/lambda_function.py`**: Lambda function for SQL execution.
+- **`utils/config/`**: AWS client configurations and constants.
+- **`text_to_sql_openai_schema.json`**: OpenAPI schema for the agent.
+
+**Run the example:**
+1. Ensure your virtual environment is activated
+2. Initialize the environment (first time only):
+    ```bash
+    cd src/bedrock-examples/text-to-sql-agent
+    python utils/initialize_environment.py
+    ```
+3. Run the agent:
+    ```bash
+    python main.py
+    ```
+
+## Model information
 
 ### Palmyra X5 (`writer.palmyra-x5-v1:0`)
 - **Model ID**: `us.writer.palmyra-x5-v1:0`
