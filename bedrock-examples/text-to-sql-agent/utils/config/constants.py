@@ -77,7 +77,7 @@ S3_GLUE_TARGET = f"s3://{BUCKET_NAME}/{S3_DATA_PATH}/TheHistoryofBaseball/"
 
 # Bedrock constants
 BEDROCK_AGENT_BEDROCK_ALLOW_POLICY_NAME = f"{AGENT_NAME}-allow-{SUFFIX}"
-FOUNDATION_MODEL = os.getenv("AWS_BEDROCK_MODEL_ID", "us.writer.palmyra-x4-v1:0")
+FOUNDATION_MODEL = os.getenv("AWS_BEDROCK_MODEL_ID", "us.writer.palmyra-x5-v1:0")
 BEDROCK_POLICY_ARNS = [
     f"arn:aws:iam::{ACCOUNT_ID}:policy/{BEDROCK_AGENT_BEDROCK_ALLOW_POLICY_NAME}",
     f"arn:aws:iam::{ACCOUNT_ID}:policy/{BEDROCK_AGENT_S3_ALLOW_POLICY_NAME}",
