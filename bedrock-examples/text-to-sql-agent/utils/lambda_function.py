@@ -10,7 +10,7 @@ def get_schema():
         print("'/getschema' has called.")
         glue_client = boto3.client("glue")
 
-        database_name = "thehistoryofbaseball"
+        database_name = "financialdata"
         table_schema_list = []
         response = glue_client.get_tables(DatabaseName=database_name)
 
@@ -42,7 +42,7 @@ def execute_athena_query(query):
 
         response = athena_client.start_query_execution(
             QueryString=query,
-            QueryExecutionContext={"Database": "thehistoryofbaseball"},
+            QueryExecutionContext={"Database": "financialdata"},
             ResultConfiguration={"OutputLocation": outputLocation},
         )
 

@@ -14,7 +14,7 @@ SUFFIX = f"{REGION}-{ACCOUNT_ID}"
 AGENT_ROLE_NAME = f"AmazonBedrockExecutionRoleForAgents_{SUFFIX}"
 ACTION_GROUP_NAME = "QueryAthenaActionGroup"
 AGENT_PROMPT = """You are an expert database querying assistant that can create simple and complex SQL queries to get
-answers about baseball players.
+answers about enterprise financial data.
 
 Follow these instructions:
 * First, you have to fetch the database schema by calling the /getschema endpoint.
@@ -25,43 +25,86 @@ This endpoint will return the query execution result.
 * Format this result if needed and prepare a final answer for the user. It's important to include both the query
 and execution results in the final answer.
 
+SQL Query Best Practices:
+- Use appropriate JOINs to connect related tables (customer_data ↔ transaction_data ↔ product_data ↔ sales_data ↔ employee_data)
+- Apply proper aggregations (SUM, COUNT, AVG) when calculating totals, averages, or counts
+- Use window functions (ROW_NUMBER, RANK, DENSE_RANK) for ranking and top-N queries
+- Include meaningful column aliases for clarity
+- Use CTEs (WITH clauses) for complex multi-step queries
+- Apply proper filtering with WHERE clauses when needed
+- Use GROUP BY appropriately for aggregations
+- Order results logically (DESC for highest values, ASC for lowest)
+- For revenue calculations, multiply transaction amount by quantity: `t.amount * s.quantity`
+- Use PARTITION BY in window functions for category-based rankings
+- Include all necessary columns in GROUP BY clauses
+
 Here is an example:
-<example>
-User Request: "Give me information about players with the top 3 highest salaries."
+&lt;example&gt;
+User Request: "Show me the top 3 customers who have spent the most."
 
 Assistant Action:
     * Calls /getschema endpoint
     * Receives schema showing tables:
-        player (player_id, name, team_id)
-        salary (player_id, season, salary)
+        customer_data (customer_id, first_name, last_name, email, ...)
+        transaction_data (transaction_id, customer_id, product_id, amount, ...)
+        product_data (product_id, product_name, category, price, ...)
+        sales_data (sale_id, transaction_id, employee_id, sale_date, ...)
+        employee_data (employee_id, first_name, last_name, job_title, ...)
     * Generates SQL:
-        sql
-            SELECT p.name AS player_name, s.salary
-            FROM salaries s JOIN players p ON s.player_id = p.player_id
-            ORDER BY s.salary DESC
-            LIMIT 3
-        sql
+        ```sql
+        SELECT
+            c.first_name,
+            c.last_name,
+            SUM(t.amount) AS total_spent
+        FROM
+            customer_data c
+        JOIN
+            transaction_data t ON c.customer_id = t.customer_id
+        GROUP BY
+            c.customer_id, c.first_name, c.last_name
+        ORDER BY
+            total_spent DESC
+        LIMIT 3;
+        ```
     * Calls /querydatabase with the above query
     * Receives results:
-        player_name	 salary
-        Mike Trout	 $37,116,000
-        Gerrit Cole	 $36,000,000
-        Max Scherzer $34,503,480
+        first_name | last_name | total_spent
+        -----------|-----------|-------------
+        John       | Smith     | 15234.50
+        Jane       | Doe       | 12876.25
+        Peter      | Jones     | 11050.00
     * Final Answer:
-        Here are the 3 highest-paid MLB players:
+        Here are the top 3 customers by total spending:
 
-        sql
-            SELECT p.name AS player_name, s.salary
-            FROM salaries s JOIN players p ON s.player_id = p.player_id
-            ORDER BY s.salary DESC
-            LIMIT 3
-        sql
+        ```sql
+        SELECT
+            c.first_name,
+            c.last_name,
+            SUM(t.amount) AS total_spent
+        FROM
+            customer_data c
+        JOIN
+            transaction_data t ON c.customer_id = t.customer_id
+        GROUP BY
+            c.customer_id, c.first_name, c.last_name
+        ORDER BY
+            total_spent DESC
+        LIMIT 3;
+        ```
 
-        Query Results:
-            Mike Trout - $37,116,000
-            Gerrit Cole - $36,000,000
-            Max Scherzer - $34,503,480
-</example> """
+        **Query Results:**
+        - **John Smith** - $15,234.50
+        - **Jane Doe** - $12,876.25
+        - **Peter Jones** - $11,050.00
+
+**Response Format Guidelines:**
+- Always include the SQL query in a code block
+- Format results clearly with bullet points and bold names
+- Use proper currency formatting ($X,XXX.XX)
+- For complex queries, explain the logic briefly
+- Group related results by categories when applicable
+- Use descriptive column aliases in queries
+&lt;/example&gt; """
 
 # S3 constants
 BEDROCK_AGENT_S3_ALLOW_POLICY_NAME = f"{AGENT_NAME}-s3-allow-{SUFFIX}"
@@ -73,7 +116,7 @@ SCHEMA_NAME = "text_to_sql_openai_schema.json"
 
 S3_SCHEMA_PATH = f"{BUCKET_NAME}/{SCHEMA_KEY}"
 S3_DATA_PATH = "data"
-S3_GLUE_TARGET = f"s3://{BUCKET_NAME}/{S3_DATA_PATH}/TheHistoryofBaseball/"
+S3_GLUE_TARGET = f"s3://{BUCKET_NAME}/{S3_DATA_PATH}/FinancialData/"
 
 # Bedrock constants
 BEDROCK_AGENT_BEDROCK_ALLOW_POLICY_NAME = f"{AGENT_NAME}-allow-{SUFFIX}"
@@ -84,14 +127,14 @@ BEDROCK_POLICY_ARNS = [
 ]
 
 # Glue constants
-GLUE_CRAWLER_NAME = "TheHistoryOfBaseball"
-GLUE_DATABASE_NAME = "thehistoryofbaseball"
+GLUE_CRAWLER_NAME = "FinancialData"
+GLUE_DATABASE_NAME = "financialdata"
 GLUE_ROLE_NAME = "AWSGlueServiceRole"
 GLUE_POLICY_ARNS = [
     "arn:aws:iam::aws:policy/AWSGlueConsoleFullAccess",
     "arn:aws:iam::aws:policy/AmazonS3FullAccess",
 ]
-DATA_PATH = "../../../resources/TheHistoryofBaseball/"
+DATA_PATH = "../../../resources/FinancialData/"
 RESOURCES_PATH = "../../../resources/"
 
 # Athena constants

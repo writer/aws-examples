@@ -25,7 +25,7 @@ This directory contains examples demonstrating how to use WRITER's Palmyra X4 an
 |---------|-------------|
 | **[Transcript Analyzer](transcript_analyzer.py)** | Analyze meeting transcripts and extract summaries and action items. |
 | **[Web Search Agent](web-search-agent/)** | Intelligent agent that can search the web and process information. |
-| **[Text-to-SQL agent](text-to-sql-agent/)** | Converts natural language queries to SQL and executes them against a baseball database. |
+| **[Text-to-SQL agent](text-to-sql-agent/)** | Converts natural language queries to SQL and executes them against an enterprise financial database. |
 
 **Key features:**
 - Integration with AWS Bedrock infrastructure.
@@ -140,7 +140,7 @@ AWS_SESSION_TOKEN=your AWS session token
 
 **What it does:**
 - Converts natural language queries into SQL using AWS Bedrock agents.
-- Executes SQL queries against a baseball database using Amazon Athena.
+- Executes SQL queries against an enterprise financial database using Amazon Athena.
 - Provides formatted results with both SQL queries and execution results.
 - Supports trace mode to show the agent's reasoning process.
 

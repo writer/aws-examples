@@ -99,7 +99,7 @@ The `resources/` directory contains sample data and files used by the examples:
 
 - **[Meeting Transcript](resources/meeting_transcript.md)**: Sample meeting transcript for testing the transcript analyzer.
 - **[The Ninth Wave](resources/the_ninth_wave.jpg)**: Sample image for testing vision analysis capabilities.
-- **[The History of Baseball](resources/TheHistoryofBaseball.zip)**: Sample document for testing long context capabilities.
+- **[Financial Data](resources/FinancialData/)**: Sample enterprise financial dataset for testing database querying capabilities.
 
 ## About WRITER
 

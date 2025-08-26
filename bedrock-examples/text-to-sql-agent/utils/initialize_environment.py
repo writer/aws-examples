@@ -142,7 +142,7 @@ def create_crawler(glue_client, crawler_name, role_name, s3_target):
         glue_client.create_crawler(
             Name=crawler_name,
             Role=role_name,
-            DatabaseName="thehistoryofbaseball",
+            DatabaseName="financialdata",
             Targets={
                 "CatalogTargets": [],
                 "DeltaTargets": [],
@@ -222,7 +222,7 @@ def set_up_agent(bedrock_client, agent_name, model_name, agent_prompt, agent_res
         response = bedrock_client.create_agent(
             agentName=agent_name,
             agentResourceRoleArn=agent_resources.get("Role", {}).get("Arn"),
-            description="Agent for performing SQL queries on baseball data.",
+            description="Agent for performing SQL queries on financial data.",
             idleSessionTTLInSeconds=3600,
             foundationModel=model_name,
             instruction=agent_prompt,

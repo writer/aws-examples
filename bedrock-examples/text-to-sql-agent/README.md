@@ -1,6 +1,6 @@
 # Text-to-SQL agent
 
-A powerful AWS Bedrock agent that converts natural language queries into SQL and executes them against a baseball database. This agent demonstrates how to build intelligent database querying assistants using AWS Bedrock's agent capabilities with WRITER's Palmyra models.
+A powerful AWS Bedrock agent that converts natural language queries into SQL and executes them against an enterprise financial database. This agent demonstrates how to build intelligent database querying assistants using AWS Bedrock's agent capabilities with WRITER's Palmyra models.
 
 ## Table of Contents
 
@@ -26,10 +26,10 @@ A powerful AWS Bedrock agent that converts natural language queries into SQL and
 
 ## Overview
 
-This agent allows users to ask questions about baseball data in natural language, such as:
-- "What player has the highest salary?"
-- "Show me the top 10 players by batting average"
-- "Which players won the most awards?"
+This agent allows users to ask questions about enterprise financial data in natural language, such as:
+- "What customer has the highest transaction amount?"
+- "Show me the top 10 customers by total spending"
+- "Which employees made the most sales?"
 
 The agent automatically:
 1. Fetches the database schema
@@ -43,8 +43,8 @@ The project consists of several AWS services working together:
 
 - **AWS Bedrock Agent**: The main AI agent that handles natural language processing
 - **AWS Lambda**: Executes SQL queries against the database
-- **Amazon Athena**: Query engine for the baseball database
-- **AWS Glue**: Data catalog and crawler for the baseball dataset
+- **Amazon Athena**: Query engine for the enterprise financial database
+- **AWS Glue**: Data catalog and crawler for the enterprise financial dataset
 - **Amazon S3**: Stores the database schema and query results
 - **IAM**: Manages permissions and roles
 
@@ -121,7 +121,7 @@ AWS_SESSION_TOKEN=your AWS session token
 
    This script will:
    - Create an S3 bucket for storing data and results
-   - Set up AWS Glue database and crawler for the baseball dataset
+   - Set up AWS Glue database and crawler for the enterprise financial dataset
    - Create Lambda function for executing SQL queries
    - Create IAM roles and policies with appropriate permissions
    - Create the Bedrock agent with the specified foundation model
@@ -150,23 +150,24 @@ The agent runs in interactive mode by default. Simply type your questions:
 Options:
   'exit' - Exit the program
 
-> what player has the highest salary?
+> what customer has the highest transaction amount?
 Calling LLM...
 Trying to call /getschema...
 Trying to call /querydatabase...
 Final response were generated!
 
-Here is the SQL query used to find the player with the highest salary:
+The customer with the highest transaction amount is Connie Henderson, with a transaction amount of $499.86.
 
-sql
-    SELECT p.name_first, p.name_last, s.salary 
-    FROM salary s 
-    JOIN player p ON s.player_id = p.player_id 
-    ORDER BY s.salary DESC 
-    LIMIT 1;
+SELECT c.first_name, c.last_name, t.amount 
+FROM customer_data c 
+JOIN transaction_data t ON c.customer_id = t.customer_id 
+ORDER BY t.amount DESC 
+LIMIT 1;
 
-Query Result:
-    Alex Rodriguez - $33,000,000
+Query Results:
+- First Name: Connie
+- Last Name: Henderson
+- Highest Transaction Amount: $499.86
 
 > exit
 Goodbye! 👋
@@ -176,11 +177,11 @@ Goodbye! 👋
 
 Try these example queries to test the agent:
 
-- "Show me the top 5 players by salary"
-- "Which players are in the Hall of Fame?"
-- "What are the highest salaries by team?"
-- "Show me players who won multiple awards"
-- "What's the average salary by position?"
+- "Show me the top 5 customers by total spending"
+- "Which employees made the most sales?"
+- "What are the highest transaction amounts by payment method?"
+- "Show me customers who made multiple transactions"
+- "What's the average transaction amount by product category?"
 
 ## Agent features
 
@@ -204,15 +205,15 @@ agent_response = bedrock_agent_runtime_client.invoke_agent(
 
 ## Database schema
 
-The agent works with a baseball database containing the following tables:
+The agent works with an enterprise financial database containing the following tables:
 
-- **player**: Player information (ID, name, team, etc.)
-- **salary**: Player salary data by season
-- **hall_of_fame**: Hall of Fame inductees
-- **player_award**: Awards won by players
-- **player_award_vote**: Award voting details
+- **customer_data**: Customer information (ID, name, contact details, etc.)
+- **transaction_data**: Transaction records with amounts, dates, and payment methods
+- **product_data**: Product catalog with categories and pricing
+- **sales_data**: Sales records linking transactions to employees
+- **employee_data**: Employee information with job titles and departments
 
-**Note:** The baseball database is located in the `\resources` folder
+**Note:** The enterprise financial database is located in the `\resources` folder
 
 ## Cleanup
 
