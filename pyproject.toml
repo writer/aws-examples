@@ -23,6 +23,8 @@ dependencies = [
     "faiss-cpu (>=1.11.0.post1,<2.0.0)"
 ]
 
+[tool.poetry.dependencies] # Temporary to access the recet unreleased fixes
+strands-agents = { git = "https://github.com/strands-agents/sdk-python.git", rev = "main" }
 
 [build-system]
 requires = ["poetry-core>=2.0.0,<3.0.0"]
